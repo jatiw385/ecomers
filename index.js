@@ -6,21 +6,21 @@ function getData(limit, skip){
     .then(res => res.json())
     .then(data => {console.log(data);
         let htmlList = data.products.map((product)=>{
-            return templatecard(product.images[0], product.title, product.description, product.price)
+            return templatecard(product.images[0], product.title, product.description, product.price, product.id)
         })
         let htmlReady = htmlList.join('')
         document.getElementById('cardParent').innerHTML = htmlReady;
     });
 }
 
-function templatecard(image, title, description, price){
-    return `<div class="col">
+function templatecard(image, title, description, price, id){
+    return `<div class="col" style="margin-top:30px ;">
                 <div class="card" style="width: 18rem;">
                     <img src="${image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${title}</h5>
                          <p class="card-text">${description}</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="/show/index.html?id=${id}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>`
@@ -68,7 +68,7 @@ document.getElementById('onSearch').addEventListener('click',(e)=>{
     .then(res => res.json())
     .then(data => {console.log(data);
         let htmlList = data.products.map((product)=>{
-            return templatecard(product.images[0], product.title, product.description, product.price)
+            return templatecard(product.images[0], product.title, product.description, product.price, product.id)
         })
         let htmlReady = htmlList.join('')
         document.getElementById('cardParent').innerHTML = htmlReady;
